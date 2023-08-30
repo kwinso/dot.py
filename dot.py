@@ -103,7 +103,7 @@ def copy_file(src_path, dst_path):
         return
 
     # Make sure we're creating new file
-    if os.path.exists(dst_path):
+    if os.path.exists(dst_path) or os.path.islink(dst_path):
         os.remove(dst_path)
 
     if Settings.use_copy:
