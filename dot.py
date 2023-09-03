@@ -23,7 +23,8 @@ class Settings:
         (".", "~/.config"),
         (".bashrc", "~"),
     ]
-    ignored = []  # Patters to ignore (relative to source directories, follows gitignore format)
+    # Patters to ignore (relative to source directories, follows gitignore format)
+    ignored = []
 
 
 # =============================
@@ -40,9 +41,9 @@ def main():
         exit(0)
 
     if Settings.use_gitignore and os.path.exists(".gitignore"):
-        Settings.ignored += list(set(
-            open(".gitignore", "r").read().strip().split("\n")
-        ))
+        Settings.ignored += list(
+            set(open(".gitignore", "r").read().strip().split("\n"))
+        )
 
     if len(Settings.ignored) > 0:
         global ignore_pattern
@@ -58,6 +59,7 @@ def main():
         perform_copy(src, dst)
 
     print("Done copying files.")
+
 
 def normalize_path(path):
     return os.path.abspath(os.path.expanduser(path))
