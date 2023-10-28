@@ -3,6 +3,7 @@ import fnmatch
 import os
 import re
 import shutil
+from typing import List
 
 
 # =============================
@@ -14,9 +15,9 @@ class Settings:
     use_gitignore = True  # Ignore files from .gitignore
 
     # Syntax:
-    #  ("source path to file / directory with files", "destination file to file / directory")
+    #  ("path to source file / dir", "path to destination file / dir")
     # NOTE:
-    #  - Specifying directory as a source will copy children to destination: <src>/* -> <dst dir>/
+    #  - Specifying directory as a source will copy <src>/* to <dst dir>/*
     #  - Copying file to directory follows the same logic as the `cp` command
     #  - Copying directory to file is not allowed
     paths = [
@@ -24,7 +25,7 @@ class Settings:
         (".bashrc", "~"),
     ]
     # Patters to ignore (relative to source directories, follows gitignore format)
-    ignored = []
+    ignored: List[str] = []
 
 
 # =============================
